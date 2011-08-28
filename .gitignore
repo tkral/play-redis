@@ -1,0 +1,11 @@
+bin/
+dist/
+eclipse/
+lib/
+samples-ant-tests/redis-cache/modules/
+test-result/
+tmp/
+
+.classpath
+.project
+.settings/

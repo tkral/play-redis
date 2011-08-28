@@ -1,0 +1,13 @@
+# Application dependencies
+
+require:
+    - play
+#   - play -> redis 0.1    
+    - localModule -> play-redis 0.1
+
+repositories:    
+    - localModule:
+        type:       local
+        artifact:   "${application.path}/../../dist/[module]-[revision].zip"
+        contains:
+            - localModule -> *
