@@ -7,7 +7,12 @@ import play.cache.Cache;
 import play.modules.redis.RedisCacheImpl;
 import play.test.UnitTest;
 
-public class RedisCacheTest extends UnitTest {
+/**
+ * Tests basic Play cache functionality using the Redis implementation.
+ * 
+ * @author Tim Kral
+ */
+public class RedisCacheBasicTest extends UnitTest {
 
 	@Before
 	public void checkCacheImpl() {
@@ -33,6 +38,13 @@ public class RedisCacheTest extends UnitTest {
     	Cache.add("testBasicCacheInt", 1);
     	int cacheValue = (Integer)Cache.get("testBasicCacheInt");
     	Assert.assertEquals("Unexpected value retrieved from cache.", 1, cacheValue);
+    }
+    
+    @Test
+    public void testBasicCacheDouble() {
+    	Cache.add("testBasicCacheDouble", 2.028486d);
+    	double cacheValue = (Double)Cache.get("testBasicCacheDouble");
+    	Assert.assertEquals("Unexpected value retrieved from cache.", 2.028486d, cacheValue, 0d);
     }
     
     @Test
