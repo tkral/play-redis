@@ -1,20 +1,49 @@
 #{extends 'main.html' /}
 #{set title:'Home' /}
 
-#{form @Application.set()}
-
+<form action="#">
 <table>
 <tr>
-  <td>Key:</td><td><input type="text" name="key"></td>
+  <td>Key:</td><td><input type="text" name="key" id="key" value="" class="text-input" /></td>
 </tr>
 <tr>
-  <td>Value:</td><td><input type="text" name="value"></td>
+  <td>Value:</td><td><input type="text" name="value" id="value" value="" class="text-input" /></td>
 </tr>
 <tr>
-  <td colspan="2" align="right"><input type="submit" name="doit" value="Set"></td>
+  <td>Expiration:</td><td><input type="text" name="expiration" id="expiration" value="" class="text-input" />  </td>
 </tr>
+<tr>
+  <td colspan="2" align="right"><input type="submit" name="submit" class="button" id="setBtn" value="Set" data-action="/set" /></td>
+</tr>
+<tr>
+  <td colspan="2" align="right"><input type="submit" name="submit" class="button" id="replaceBtn" value="Replace" data-action="/replace" /></td>
+</tr>
+#{if flash.error}
+<tr>
+  <td colspan="3" align="right"><div style="color:#c00">${flash.error}</div></td>
+</tr>
+#{/if}
 </table>
-#{/form}
+</form>
+
+<script type="text/javascript">
+$(function(){
+  $('form').bind('submit', function(){ return false });
+  $('form input[type=submit]').bind('click', function(e){
+    var $button = $(this),
+        $form   = $button.closest('form'),
+        key    = $form.find('#key').val(),
+        value  = $form.find('#value').val(),
+        exp    = $form.find('#expiration').val();
+
+    var url = $button.data('action') + '/' + key + '/' + value + '/' + exp;
+    $.post(url, function(){ $form.find('input[type=text]').val('') });
+
+    e.preventDefault();
+  });
+});
+</script>
+
 
 <hr/>
 #{cacheMonitor /}

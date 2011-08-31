@@ -4,7 +4,8 @@
 
 # Home page
 GET     /                                       Application.index
-GET     /set/{key}/{value}                      Application.set
+POST    /set/{key}/{value}/{expiration}                                    Application.set
+POST    /replace/{key}/{value}/{expiration}                                    Application.replace
 
 GET       /cache                                  module:play
 

@@ -9,60 +9,56 @@
 
 <h3>Instance Information</h3>
 <table>
-<div id="cacheInstance"></div>
+<div id="cacheInstance">Loading...</div>
 </table>
 
 <h3>Client Information</h3>
 <table>
-<div id="cacheClientInfo"></div>
+<div id="cacheClientInfo">Loading...</div>
 </table>
 
 <script type="text/javascript">
   
-  $("#cacheContents").ready(function() {
+  $(function() {
     cacheContents();
-    setInterval('cacheContents()', 5000);
-  });
-  
-  $("#cacheInstance").ready(function() {
     cacheInstance();
+    cacheClientInfo();
   });
   
-  $("#cacheClientInfo").ready(function() {
-    cacheClientInfo();
-    setInterval('cacheClientInfo()', 5000);
-  });
-
   function cacheContents() {
     $.getJSON('/cache/cacheContents', function(json) {
-      $("#cacheContents").empty();
-      
+      var $div = $('<div id="cacheContents" />');
+    
       for(key in json) {
         var value = json[key];
-        $("#cacheContents").append('<tr><td align="left">' + key + '</td><td> => </td><td align="left">' + value + '</td></tr>');
+        $div.append('<tr><td align="left">' + key + '</td><td> => </td><td align="left">' + value + '</td></tr>');
       }
-      
+      $('#cacheContents').replaceWith($div);
+      setTimeout(function(){ cacheContents() }, 2000);
     });
   }
   
   function cacheInstance() {
     $.getJSON('/cache/cacheInstance', function(json) {
+      var $div = $('<div id="cacheInstance" />');
       
       for(key in json) {
         var value = json[key];
-        $("#cacheInstance").append('<tr><td align="left">' + key + '</td><td> => </td><td align="left">' + value + '</td></tr>');
+        $div.append('<tr><td align="left">' + key + '</td><td> => </td><td align="left">' + value + '</td></tr>');
       }
+      $("#cacheInstance").replaceWith($div);
     });
   }
 
   function cacheClientInfo() {
     $.getJSON('/cache/cacheClientInfo', function(json) {      
-      $("#cacheClientInfo").empty();
-      
+      var $div = $('<div id="cacheClientInfo" />');
       for(key in json) {
         var value = json[key];
-        $("#cacheClientInfo").append('<tr><td align="left">' + key + '</td><td> => </td><td align="left">' + value + '</td></tr>');
+        $div.append('<tr><td align="left">' + key + '</td><td> => </td><td align="left">' + value + '</td></tr>');
       }
+      $('#cacheClientInfo').replaceWith($div);
+      setTimeout(function(){ cacheClientInfo() }, 2000);
     });
   }
 </script>
