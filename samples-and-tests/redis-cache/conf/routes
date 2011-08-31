@@ -4,6 +4,9 @@
 
 # Home page
 GET     /                                       Application.index
+GET     /set/{key}/{value}                      Application.set
+
+GET       /cache                                  module:play
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

@@ -26,7 +26,7 @@ public class RedisCacheImpl implements CacheImpl {
         return uniqueInstance;
     }
 
-    private static Jedis getCacheConnection() {
+    public static Jedis getCacheConnection() {
     	if (cacheConnection.get() != null) {
     		return cacheConnection.get();
     	}
@@ -71,7 +71,7 @@ public class RedisCacheImpl implements CacheImpl {
 		jedis.expire(key, expiration);
 	}
 
-	private byte[] toByteArray(Object o) {
+	private static byte[] toByteArray(Object o) {
 		ObjectOutputStream out = null;
 		try {
 			ByteArrayOutputStream bos = new ByteArrayOutputStream() ;
@@ -121,6 +121,11 @@ public class RedisCacheImpl implements CacheImpl {
 	public Object get(String key) {
 		byte[] bytes = getCacheConnection().get(key.getBytes());
 		if (bytes == null) return null;
+
+		return fromByteArray(bytes);
+	}
+
+	private static Object fromByteArray(byte[] bytes) {
 		
 		ObjectInputStream in = null;
 		try {
@@ -136,7 +141,7 @@ public class RedisCacheImpl implements CacheImpl {
 			}
 		}
 	}
-
+	
 	@Override
 	public Map<String, Object> get(String[] keys) {
 		Map<String, Object> result = new HashMap<String, Object>(keys.length);

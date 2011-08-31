@@ -36,14 +36,14 @@ public class RedisCacheBasicTest extends UnitTest {
     @Test
     public void testBasicCacheInt() {
     	Cache.add("testBasicCacheInt", 1);
-    	int cacheValue = (Integer)Cache.get("testBasicCacheInt");
+    	int cacheValue = Cache.get("testBasicCacheInt", Integer.class);
     	Assert.assertEquals("Unexpected value retrieved from cache.", 1, cacheValue);
     }
     
     @Test
     public void testBasicCacheDouble() {
     	Cache.add("testBasicCacheDouble", 2.028486d);
-    	double cacheValue = (Double)Cache.get("testBasicCacheDouble");
+    	double cacheValue = Cache.get("testBasicCacheDouble", Double.class);
     	Assert.assertEquals("Unexpected value retrieved from cache.", 2.028486d, cacheValue, 0d);
     }
     

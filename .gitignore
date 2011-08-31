@@ -2,7 +2,7 @@ bin/
 dist/
 eclipse/
 lib/
-samples-ant-tests/redis-cache/modules/
+samples-and-tests/redis-cache/modules/
 test-result/
 tmp/
 

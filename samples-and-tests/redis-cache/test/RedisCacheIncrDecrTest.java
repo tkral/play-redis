@@ -30,7 +30,7 @@ public class RedisCacheIncrDecrTest extends UnitTest {
 		long decrValue = Cache.decr("testDecrEmptyKey");
 		Assert.assertEquals("Unexpected return from cache decr.", -1L, decrValue);
 		
-		long cacheValue = (Long)Cache.get("testDecrEmptyKey");
+		long cacheValue = Cache.get("testDecrEmptyKey", Long.class);
 		Assert.assertEquals("Unexpected value retrieved after cache decr.", -1L, cacheValue);
 	}
 	
@@ -40,7 +40,7 @@ public class RedisCacheIncrDecrTest extends UnitTest {
 		long decrValue = Cache.decr("testDecrInt");
 		Assert.assertEquals("Unexpected return from cache decr.", 9L, decrValue);
 		
-    	int cacheValue = (Integer)Cache.get("testDecrInt");
+    	int cacheValue = Cache.get("testDecrInt", Integer.class);
     	Assert.assertEquals("Unexpected value retrieved after cache decr.", 9, cacheValue);
 	}
 
@@ -50,7 +50,7 @@ public class RedisCacheIncrDecrTest extends UnitTest {
 		long decrValue = Cache.decr("testDecrIntBy", 2);
 		Assert.assertEquals("Unexpected return from cache decr.", 8L, decrValue);
 		
-    	int cacheValue = (Integer)Cache.get("testDecrIntBy");
+    	int cacheValue = Cache.get("testDecrIntBy", Integer.class);
     	Assert.assertEquals("Unexpected value retrieved after cache decr.", 8, cacheValue);
 	}
 	
@@ -60,7 +60,7 @@ public class RedisCacheIncrDecrTest extends UnitTest {
     	long decrValue = Cache.decr("testDecrLong");
     	Assert.assertEquals("Unexpected return from cache decr.", 9L, decrValue);
     	
-    	long cacheValue = (Long)Cache.get("testDecrLong");
+    	long cacheValue = Cache.get("testDecrLong", Long.class);
     	Assert.assertEquals("Unexpected value retrieved after cache decr.", 9L, cacheValue);
     }
     
@@ -70,7 +70,7 @@ public class RedisCacheIncrDecrTest extends UnitTest {
     	long decrValue = Cache.decr("testDecrLongBy", 2);
     	Assert.assertEquals("Unexpected return from cache decr.", 8L, decrValue);
     	
-    	long cacheValue = (Long)Cache.get("testDecrLongBy");
+    	long cacheValue = Cache.get("testDecrLongBy", Long.class);
     	Assert.assertEquals("Unexpected value retrieved after cache decr.", 8L, cacheValue);
     }
     
@@ -90,7 +90,7 @@ public class RedisCacheIncrDecrTest extends UnitTest {
 		long incrValue = Cache.incr("testIncrEmptyKey");
 		Assert.assertEquals("Unexpected return from cache incr.", 1L, incrValue);
 		
-		long cacheValue = (Long)Cache.get("testIncrEmptyKey");
+		long cacheValue = Cache.get("testIncrEmptyKey", Long.class);
 		Assert.assertEquals("Unexpected value retrieved after cache incr.", 1L, cacheValue);
 	}
 	
@@ -100,7 +100,7 @@ public class RedisCacheIncrDecrTest extends UnitTest {
 		long incrValue = Cache.incr("testIncrInt");
 		Assert.assertEquals("Unexpected return from cache incr.", 11L, incrValue);
 		
-    	int cacheValue = (Integer)Cache.get("testIncrInt");
+    	int cacheValue = Cache.get("testIncrInt", Integer.class);
     	Assert.assertEquals("Unexpected value retrieved after cache incr.", 11, cacheValue);
 	}
 
@@ -120,7 +120,7 @@ public class RedisCacheIncrDecrTest extends UnitTest {
     	long incrValue = Cache.incr("testIncrLong");
     	Assert.assertEquals("Unexpected return from cache incr.", 11L, incrValue);
     	
-    	long cacheValue = (Long)Cache.get("testIncrLong");
+    	long cacheValue = Cache.get("testIncrLong", Long.class);
     	Assert.assertEquals("Unexpected value retrieved after cache incr.", 11L, cacheValue);
     }
     
@@ -130,7 +130,7 @@ public class RedisCacheIncrDecrTest extends UnitTest {
     	long incrValue = Cache.incr("testIncrLongBy", 2);
     	Assert.assertEquals("Unexpected return from cache incr.", 12L, incrValue);
     	
-    	long cacheValue = (Long)Cache.get("testIncrLongBy");
+    	long cacheValue = Cache.get("testIncrLongBy", Long.class);
     	Assert.assertEquals("Unexpected value retrieved after cache incr.", 12L, cacheValue);
     }
     

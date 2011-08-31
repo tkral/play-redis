@@ -1,4 +1,20 @@
 #{extends 'main.html' /}
 #{set title:'Home' /}
 
-#{welcome /}
+#{form @Application.set()}
+
+<table>
+<tr>
+  <td>Key:</td><td><input type="text" name="key"></td>
+</tr>
+<tr>
+  <td>Value:</td><td><input type="text" name="value"></td>
+</tr>
+<tr>
+  <td colspan="2" align="right"><input type="submit" name="doit" value="Set"></td>
+</tr>
+</table>
+#{/form}
+
+<hr/>
+#{cacheMonitor /}

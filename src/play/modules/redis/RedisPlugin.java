@@ -26,10 +26,14 @@ public class RedisPlugin extends PlayPlugin {
 	private boolean createdRedisCache;
 	private boolean createdRedis;
 	
+	public static boolean isRedisCacheEnabled() {
+		return Play.configuration.getProperty("redis.cache", "disabled").equals("enabled");
+	}
+	
 	@Override
 	public void onConfigurationRead() {
 		URI redisCacheUri;
-		if (Play.configuration.getProperty("redis.cache", "disabled").equals("enabled")) {
+		if (isRedisCacheEnabled()) {
 	    	if (Play.configuration.containsKey("redis.cache.url")) {
 	    	    String redisCacheUrl = Play.configuration.getProperty("redis.cache.url");
 	    	    Logger.info("Connecting to redis cache with %s", redisCacheUrl);

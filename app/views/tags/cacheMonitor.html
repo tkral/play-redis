@@ -1,0 +1,70 @@
+
+#{if play.mode.toString() == 'DEV'}
+<h2>Redis Cache Monitor</h2>
+
+<h3>Cache Contents</h3>
+<table>
+<div id="cacheContents"></div>
+</table>
+
+<h3>Instance Information</h3>
+<table>
+<div id="cacheInstance"></div>
+</table>
+
+<h3>Client Information</h3>
+<table>
+<div id="cacheClientInfo"></div>
+</table>
+
+<script type="text/javascript">
+  
+  $("#cacheContents").ready(function() {
+    cacheContents();
+    setInterval('cacheContents()', 5000);
+  });
+  
+  $("#cacheInstance").ready(function() {
+    cacheInstance();
+  });
+  
+  $("#cacheClientInfo").ready(function() {
+    cacheClientInfo();
+    setInterval('cacheClientInfo()', 5000);
+  });
+
+  function cacheContents() {
+    $.getJSON('/cache/cacheContents', function(json) {
+      $("#cacheContents").empty();
+      
+      for(key in json) {
+        var value = json[key];
+        $("#cacheContents").append('<tr><td align="left">' + key + '</td><td> => </td><td align="left">' + value + '</td></tr>');
+      }
+      
+    });
+  }
+  
+  function cacheInstance() {
+    $.getJSON('/cache/cacheInstance', function(json) {
+      
+      for(key in json) {
+        var value = json[key];
+        $("#cacheInstance").append('<tr><td align="left">' + key + '</td><td> => </td><td align="left">' + value + '</td></tr>');
+      }
+    });
+  }
+
+  function cacheClientInfo() {
+    $.getJSON('/cache/cacheClientInfo', function(json) {      
+      $("#cacheClientInfo").empty();
+      
+      for(key in json) {
+        var value = json[key];
+        $("#cacheClientInfo").append('<tr><td align="left">' + key + '</td><td> => </td><td align="left">' + value + '</td></tr>');
+      }
+    });
+  }
+</script>
+
+#{/if}
