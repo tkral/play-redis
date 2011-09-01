@@ -4,6 +4,7 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
 /**
+ * Redis connector for Play.
  * 
  * @author Tim Kral
  */

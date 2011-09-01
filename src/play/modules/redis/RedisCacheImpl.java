@@ -13,6 +13,11 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.exceptions.JedisDataException;
 
+/**
+ * Play cache implementation using Redis.
+ * 
+ * @author Tim Kral
+ */
 public class RedisCacheImpl implements CacheImpl {
 
 	private static RedisCacheImpl uniqueInstance = new RedisCacheImpl();

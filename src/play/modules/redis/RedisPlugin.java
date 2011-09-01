@@ -1,6 +1,3 @@
-/**
- * 
- */
 package play.modules.redis;
 
 import java.net.URI;
@@ -18,8 +15,9 @@ import redis.clients.jedis.Protocol;
 
 
 /**
- * @author tkral
- *
+ * Play plugin for Redis.
+ * 
+ * @author Tim Kral
  */
 public class RedisPlugin extends PlayPlugin {
 
