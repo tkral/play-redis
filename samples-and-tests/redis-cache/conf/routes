@@ -4,6 +4,7 @@
 
 # Home page
 GET     /                                       Application.index
+POST    /clear                                  Application.clear
 POST    /set/{key}/{value}/                     Application.set
 POST    /set/{key}/{value}/{expiration}         Application.setWithExpire
 POST    /replace/{key}/{value}/                 Application.replace

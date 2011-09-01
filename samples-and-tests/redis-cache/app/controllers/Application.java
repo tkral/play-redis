@@ -10,6 +10,11 @@ public class Application extends Controller {
     	render();
     }
 
+    public static void clear() {
+    	Cache.clear();
+    	index();
+    }
+    
     public static void set(String key, String value) {
     	Cache.set(key, value);
     	index();

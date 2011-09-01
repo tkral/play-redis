@@ -1,7 +1,7 @@
 #{extends 'main.html' /}
 #{set title:'Home' /}
 
-<form action="#">
+<form id="cacheForm" action="#">
 <table>
 <tr>
   <td>Key:</td><td><input type="text" name="key" id="key" value="" class="text-input" /></td>
@@ -13,10 +13,10 @@
   <td>Expiration:</td><td><input type="text" name="expiration" id="expiration" value="" class="text-input" />  </td>
 </tr>
 <tr>
-  <td colspan="2" align="right"><input type="submit" name="submit" class="button" id="setBtn" value="Set" data-action="/set" /></td>
-</tr>
-<tr>
-  <td colspan="2" align="right"><input type="submit" name="submit" class="button" id="replaceBtn" value="Replace" data-action="/replace" /></td>
+  <td colspan="2" align="left">
+    <input type="submit" name="submit" class="button" id="setBtn" value="Set" data-action="/set" />
+    <input type="submit" name="submit" class="button" id="replaceBtn" value="Replace" data-action="/replace" />
+  </td>
 </tr>
 #{if flash.error}
 <tr>
@@ -26,10 +26,14 @@
 </table>
 </form>
 
+#{form @Application.clear()}
+  <input type="submit" name="submit" class="button" id="clearBtn" value="Clear Cache" />
+#{/form}
+
 <script type="text/javascript">
 $(function(){
-  $('form').bind('submit', function(){ return false });
-  $('form input[type=submit]').bind('click', function(e){
+  $('#cacheForm').bind('submit', function(){ return false });
+  $('#cacheForm input[type=submit]').bind('click', function(e){
     var $button = $(this),
         $form   = $button.closest('form'),
         key    = $form.find('#key').val(),
