@@ -1,0 +1,19 @@
+#{extends 'main.html' /}
+<div id="postform">
+#{form @twayis.Engine.post() }
+${session.username}, what you are doing?
+<br>
+<table>
+<tr><td><textarea cols="70" rows="3" name="status"></textarea></td></tr>
+<tr><td align="right"><input type="submit" name="doit" value="Update"></td></tr>
+</table>
+#{/form}
+<div id="homeinfobox">
+${followers} followers<br>
+${following} following<br>
+
+</div>
+</div>
+#{list items:posts, as:'oldPost'}
+    #{displayPost post:oldPost/}
+#{/list}

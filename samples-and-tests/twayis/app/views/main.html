@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <title>Twayis - Example Twitter clone based on the Playframework and Redis Key-Value DB</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/main.css'}" />
+        <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}" />
+        <script src="@{'/public/javascripts/jquery-1.3.2.min.js'}" type="text/javascript" charset="utf-8"></script>
+    </head>
+    <body>
+        <div id="page">
+            <div id="header">
+                <a href="/"><img style="border:none" src="@{'/public/images/logo.jpg'}" width="192" height="85" alt="Retwis"></a>
+            
+                <div id="navbar">
+                    <a href="@{twayis.Application.index()}">Home</a>
+                    | <a href="@{twayis.Application.timeline()}">timeline</a>
+                    #{if session.username != null}
+                    | <a href="@{Secure.logout()}">logout</a>
+                    #{/if}
+                </div>
+            </div>
+            #{doLayout /}
+        </div>
+    </body>
+</html>
+

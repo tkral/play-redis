@@ -1,0 +1,21 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                                       twayis.Application.index
+GET     /profile/{username}                     twayis.Application.profile
+GET     /timeline                               twayis.Application.timeline
+
+# Secure routing overridden
+GET     /login                                  twayis.Application.index
+POST    /login                                  Secure.authenticate
+GET     /logout                                 twayis.Application.index
+
+* /twayis/{controller}/{action}                  twayis.{controller}.{action}
+
+# Map static resources from the /app/public folder to the /public path
+GET     /public/                                staticDir:public
+
+# Catch all
+*       /{controller}/{action}                  {controller}.{action}

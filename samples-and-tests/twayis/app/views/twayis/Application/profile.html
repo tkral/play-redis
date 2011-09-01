@@ -1,0 +1,40 @@
+#{extends 'main.html' /}
+<h2 class="username">${username}</h2>
+#{if displayFollow}
+    <a id="toggleFollow" href="#" class="button">#{if isFollowing}Stop following#{/if}#{else}Follow this user#{/else}</a>
+#{/if}
+#{list items:posts, as:'oldPost'}
+    #{displayPost post:oldPost /}
+#{/list}
+<script type="text/javascript" charset="utf-8">
+    $('#toggleFollow').bind("click", function () {
+        #{if isFollowing}onUnFollow()#{/if}#{else}onFollow()#{/else};
+    });
+    
+
+    function onFollow() {
+        $.post("@{twayis.Engine.follow()}", {username:"${username}", type:"${isFollowing}"}, function(response) {
+            if(response.status == 'ok') {
+                $('#toggleFollow').text("Stop following");
+                $('#toggleFollow').live("click",function () {
+                    onUnFollow();
+                });
+            }
+            
+        }, 'json');
+    }
+
+    function onUnFollow() {
+        $.post("@{twayis.Engine.unfollow()}", {username:"${username}"}, function(response) {
+            if(response.status == 'ok') {
+                $('#toggleFollow').text("Follow this user");
+                $('#toggleFollow').live("click",function () {
+                    onFollow();
+                });
+            }
+            
+        }, 'json');
+    }
+
+</script>
+

@@ -2,7 +2,9 @@ bin/
 dist/
 eclipse/
 lib/
+precompiled/
 samples-and-tests/redis-cache/modules/
+samples-and-tests/twayis/modules/
 test-result/
 tmp/
 

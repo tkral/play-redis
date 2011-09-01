@@ -1,0 +1,63 @@
+#{extends 'main.html' /}
+<div id="welcomebox">
+<div id="registerbox">
+<h2>Register!</h2>
+<b>Want to try Twayis? Create an account!</b>
+#{form @twayis.Application.register() }
+
+<table>
+<tr>
+  <td>Username</td><td><input type="text" name="username"></td>
+</tr>
+<tr>
+  <td>Password</td><td><input type="password" name="password"></td>
+</tr>
+<tr>
+  <td>Password (again)</td><td><input type="password" name="password2"></td>
+</tr>
+#{if flash.error}
+<tr>
+  <td colspan="2" align="right"><div style="color:#c00">${flash.error}</div></td>
+</tr>
+#{/if}
+#{elseif flash.success}
+<tr>
+  <td colspan="2" align="right"><div style="color:#0c0">${flash.success}</div></td>
+</tr>
+#{/elseif}
+<tr>
+  <td colspan="2" align="right"><input type="submit" name="doit" value="Create an account"></td>
+</tr>
+</table>
+#{/form}
+
+<h2>Already registered? Login here</h2>
+<form method="POST" action="/login">
+<table><tr>
+  <td>Username</td><td><input type="text" name="username"></td>
+  </tr><tr>
+  <td>Password</td><td><input type="password" name="password"></td>
+  </tr><tr>
+  <td colspan="2" align="right"><input type="submit" name="doit" value="Login"></td>
+</tr></table>
+</form>
+
+</div>
+    Hello! Twayis is Java port of <a href="http://retwis.antirez.com">Retwis</a>, a  <a href="http://twitter.com">Twitter</a> clone used as a demo for the <a href="http://code.google.com/p/redis/">Redis</a> key-value database.
+    Twayis uses the <a href="www.playframework.org">Play!</a> as a web framework.<br> <br>
+    <b>This version of Twayis was adapted for the <a href="www.heroku.com">heroku platform</a>.</b>
+<br><br>
+Key points:
+<ul>
+<li>Redis is a key-value DB, and it is <b>the only DB used</b> by this application, no MySQL or alike at all.</li>
+<li>This application can scale horizontally since there is no point where the whole dataset is needed at the same point. With consistent hashing (not implemented in the demo to make it simpler) different keys can be stored in different servers.</li>
+<li>Twayis uses many features of the Play! framework, includining Ajax, complex routing, Extensions, Dependency Injection via Guice etc.</li>
+<li>Java and the Redis server communicate using the <a href="https://github.com/xetorthio/jedis/">Jedis library</a> client written by xetorthio 
+(the original application uses the <a href="http://code.google.com/p/jredis/">JRedis library</a> client written by n o ' r o o z)</li>
+</ul>
+Source code:
+<ul>
+<li>Original source code of this application is available <a href="http://code.google.com/p/twayis/">here</a>.</li>
+<li>Adapted source code of the heroku application is available <a href="https://github.com/tkral/twayis-heroku/">here</a>.</li>
+</ul>
+</div>

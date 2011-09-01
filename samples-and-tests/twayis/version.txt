@@ -1,0 +1,45 @@
+==================================
+             
+            T W A Y S 
+
+A Twitter/retwis clone to showcase
+Play! Framework and Redis
+
+==================================
+
+http://code.google.com/p/tways/
+
+v. 0.1 [05 November 2009]
+
+- Initial release. Basic Twitter clone features working:
+  follow, unfollow, post, login, timeline
+
+
+
+
+ * Updates
+ 
+Updates about "tways" will be posted at:
+
+   tways project site:
+   http://code.google.com/p/tways/
+   
+   play! framework group
+   http://groups.google.com/group/play-framework/
+
++spontanous updates will also be posted to twitter under
+
+  http://twitter.com/koevet
+
+ 
+* Feedback
+    
+Your feedback is welcomed and appreciated.  Please direct your
+questions, suggestion, comments, concerns, and complaints to
+the above public forums, or directly to me @ 
+
+   info@lucianofiandesio.com
+
+Most specially, information regarding bugs, performance, and 
+usability issues, will be highly appreciated. 
+
