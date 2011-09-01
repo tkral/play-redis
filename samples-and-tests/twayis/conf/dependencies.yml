@@ -4,6 +4,16 @@ require:
     - play
     - play -> secure
     - play -> guice 1.2
+#   - play -> redis 0.1
+    - localModule -> play-redis 0.1
     - com.ocpsoft -> ocpsoft-pretty-time 1.0.4:
         transitive: false
-    - redis.clients -> jedis 2.0.0
+
+
+
+repositories:    
+    - localModule:
+        type:       local
+        artifact:   "${application.path}/../../dist/[module]-[revision].zip"
+        contains:
+            - localModule -> *

@@ -8,16 +8,13 @@ import javax.inject.Inject;
 import models.Post;
 import play.Logger;
 import play.mvc.Controller;
-import play.mvc.With;
 import redis.clients.jedis.exceptions.JedisException;
-import services.RedisImpl;
 import services.Twayis;
 
 /**
  *
  * @author luciano
  */
-@With(RedisImpl.class)
 public class Application extends Controller {
 
     @Inject

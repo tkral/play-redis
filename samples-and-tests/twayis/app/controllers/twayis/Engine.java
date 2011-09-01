@@ -5,19 +5,20 @@
 
 package controllers.twayis;
 
-import play.mvc.With;
-import javax.inject.Inject;
-import play.mvc.Controller;
 import java.util.List;
+
+import javax.inject.Inject;
+
 import models.Post;
-import services.RedisImpl;
+import play.mvc.Controller;
+import play.mvc.With;
 import services.Twayis;
-import controllers.*;
+import controllers.Secure;
 /**
  *
  * @author luciano
  */
-@With({Secure.class, RedisImpl.class})
+@With(Secure.class)
 public class Engine extends Controller {
     @Inject
     static Twayis twayis;
