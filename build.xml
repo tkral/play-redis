@@ -32,7 +32,7 @@
         <jar destfile="lib/play-redis.jar" basedir="tmp/classes">
             <manifest>
                 <section name="Play-module">
-                    <attribute name="Specification-Title" value="play-redis"/>
+                    <attribute name="Specification-Title" value="redis"/>
                 </section>
             </manifest>
         </jar>

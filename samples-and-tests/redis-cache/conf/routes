@@ -10,6 +10,7 @@ POST    /set/{key}/{value}/{expiration}         Application.setWithExpire
 POST    /replace/{key}/{value}/                 Application.replace
 POST    /replace/{key}/{value}/{expiration}     Application.replaceWithExpire
 
+#GET     /cache                                  module:redis
 GET     /cache                                  module:play
 
 # Ignore favicon requests
