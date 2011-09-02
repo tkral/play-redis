@@ -27,7 +27,7 @@ public class RedisCacheImpl implements CacheImpl {
 	
     private RedisCacheImpl() {  }
 
-    public static RedisCacheImpl getInstance() {
+    static RedisCacheImpl getInstance() {
         return uniqueInstance;
     }
 
@@ -41,7 +41,7 @@ public class RedisCacheImpl implements CacheImpl {
     	return connection;
     }
     
-    static void closeCacheConnection() {
+    public static void closeCacheConnection() {
         if (cacheConnection.get() != null) {
         	connectionPool.returnResource(cacheConnection.get());
         	cacheConnection.remove();
