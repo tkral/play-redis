@@ -73,6 +73,7 @@ public class RedisPlugin extends PlayPlugin {
     	} else {
     		if (!createdRedisCache) Logger.warn("No redis.url found in configuration. Redis will not be available.");
     	}
+    	
 	}
 	
 	@Override

@@ -16,9 +16,9 @@ public class Security extends Secure.Security {
     
     static boolean authentify(String username, String password) {
         
-        String userid = Redis.getConnection().get("username:" + username + ":id");
+        String userid = Redis.getRawConnection().get("username:" + username + ":id");
         if (userid!=null) {
-        	String pw = Redis.getConnection().get("uid:"+userid+":password");
+        	String pw = Redis.getRawConnection().get("uid:"+userid+":password");
         	if (pw.equals(password)) return true;
         }
         

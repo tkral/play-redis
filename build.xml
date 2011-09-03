@@ -19,6 +19,7 @@
         </fileset>
     </path>
 
+<!--<target name="build" depends="enhance"> -->
     <target name="build" depends="compile">
         <mkdir dir="lib" />
         <copy todir="tmp/classes">
@@ -36,14 +37,35 @@
                 </section>
             </manifest>
         </jar>
-        <delete dir="tmp" />
     </target>
 
-    <target name="compile" depends="check">
+	<target name="clean" depends="check">
+		<delete dir="tmp" />
+		<delete file="lib/play-redis.jar" />
+	</target>
+	
+    <target name="compile" depends="clean">
         <mkdir dir="tmp/classes" />
         <javac srcdir="src" destdir="tmp/classes" target="1.5" debug="true">
             <classpath refid="project.classpath" />
         </javac>
     </target>
 
+<!--	
+	<target name="enhance" depends="compile">
+	    <java classname="play.modules.redis.enhancer.RedisEnhancer"
+	          failonerror="true"
+	          fork="true">
+	       <classpath>
+	    	 <fileset dir="lib">
+	    	   <include name="**/*.jar"/>
+	    	 </fileset>
+	    	 <pathelement location="tmp/classes"/>
+	        <fileset dir="${play.path}/framework/lib">
+	            <include name="*.jar"/>
+	        </fileset>
+	       </classpath>
+	    </java>
+	</target>
+-->
 </project>
