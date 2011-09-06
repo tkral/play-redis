@@ -16,7 +16,7 @@ public class Redis {
     $redisMethods:{m | 
     public static $m; format="returnType"$ $m; format="name"$($m; format="paramListWithTypes"$) \{
     $if(m.isAvailableForShards)$
-        Jedis jedis = RedisConnectionManager.getRawConnectionFromShard(arg0);
+        Jedis jedis = RedisConnectionManager.getRawConnectionFromShard($m; format="firstParamName"$);
         return jedis.$m; format="name"$($m; format="paramList"$);
     $else$
         if (!RedisConnectionManager.isSharded()) \{
