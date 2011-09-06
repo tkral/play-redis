@@ -5,6 +5,7 @@
 
 package controllers;
 
+import play.modules.redis.Redis;
 import play.modules.redis.RedisConnectionManager;
 
 
@@ -16,9 +17,9 @@ public class Security extends Secure.Security {
     
     static boolean authentify(String username, String password) {
         
-        String userid = RedisConnectionManager.getRawConnection().get("username:" + username + ":id");
+        String userid = Redis.get("username:" + username + ":id");
         if (userid!=null) {
-        	String pw = RedisConnectionManager.getRawConnection().get("uid:"+userid+":password");
+        	String pw = Redis.get("uid:"+userid+":password");
         	if (pw.equals(password)) return true;
         }
         
