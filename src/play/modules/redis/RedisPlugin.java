@@ -56,7 +56,7 @@ public class RedisPlugin extends PlayPlugin {
     	    Logger.info("Connecting to redis with %s", redisUrl);
     	    RedisConnectionInfo redisConnInfo = new RedisConnectionInfo(redisUrl, Play.configuration.getProperty("redis.timeout"));
     	    
-        	Redis.connectionPool = redisConnInfo.getConnectionPool();
+        	RedisConnectionManager.connectionPool = redisConnInfo.getConnectionPool();
         	createdRedis = true;
     	} else if(Play.configuration.containsKey("redis.1.url")) {
     		int nb = 1;
@@ -68,7 +68,7 @@ public class RedisPlugin extends PlayPlugin {
                 nb++;
             }
             
-            Redis.shardedConnectionPool = new ShardedJedisPool(new JedisPoolConfig(), shards, ShardedJedis.DEFAULT_KEY_TAG_PATTERN);
+            RedisConnectionManager.shardedConnectionPool = new ShardedJedisPool(new JedisPoolConfig(), shards, ShardedJedis.DEFAULT_KEY_TAG_PATTERN);
             createdRedis = true;
     	} else {
     		if (!createdRedisCache) Logger.warn("No redis.url found in configuration. Redis will not be available.");
@@ -79,13 +79,13 @@ public class RedisPlugin extends PlayPlugin {
 	@Override
 	public void onApplicationStop() {
 		// Redis cache is destroyed in Cache.stop (see Play.stop)
-		if (createdRedis) Redis.destroy();
+		if (createdRedis) RedisConnectionManager.destroy();
 	}
 	
     @Override
     public void invocationFinally() {
     	if (createdRedisCache) RedisCacheImpl.closeCacheConnection();
-    	if (createdRedis) Redis.closeConnection();
+    	if (createdRedis) RedisConnectionManager.closeConnection();
     }
     
     private static class RedisConnectionInfo {
