@@ -44,8 +44,8 @@
     </target>
 
     <target name="generate-sources" depends="clean">
-        <mkdir dir="tmp/classes" />
-        <javac srcdir="src/play/modules/redis/generator" destdir="tmp/classes" target="1.5" debug="true">
+        <mkdir dir="tmp/generator-classes" />
+        <javac srcdir="src-generator/play/modules/redis/generator" destdir="tmp/generator-classes" target="1.5" debug="true">
             <classpath>
                 <fileset dir="lib">
                     <include name="**/*.jar"/>
@@ -62,7 +62,7 @@
                 <fileset dir="lib">
                     <include name="**/*.jar"/>
                 </fileset>
-                <pathelement location="tmp/classes"/>
+                <pathelement location="tmp/generator-classes"/>
                 <fileset dir="${play.path}/framework/lib">
                     <include name="*.jar"/>
                 </fileset>

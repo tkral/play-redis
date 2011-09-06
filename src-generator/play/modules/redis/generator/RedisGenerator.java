@@ -25,7 +25,7 @@ public class RedisGenerator {
 	
     public static void main(String[] args) throws NotFoundException, IOException {
 		
-        StringTemplate template = new StringTemplateGroup("Redis", "src", null).getInstanceOf("Redis");
+        StringTemplate template = new StringTemplateGroup("Redis", "src-generator", null).getInstanceOf("Redis");
         template.setAttributeRenderers(Collections.singletonMap(RedisMethod.class, new RedisMethodRenderer()));
         
         CtClass jedisClass = ClassPool.getDefault().get("redis.clients.jedis.Jedis");
