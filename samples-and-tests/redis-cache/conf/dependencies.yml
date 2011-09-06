@@ -2,8 +2,8 @@
 
 require:
     - play
-#   - play -> redis 0.1    
-    - localModule -> play-redis 0.1
+#   - play -> redis 0.2    
+    - localModule -> play-redis 0.2
 
 repositories:    
     - localModule:

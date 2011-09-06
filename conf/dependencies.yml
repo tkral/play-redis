@@ -1,4 +1,4 @@
-self: play -> redis 0.1
+self: play -> redis 0.2
 
 require:
     - play
