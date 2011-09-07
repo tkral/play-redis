@@ -26,17 +26,18 @@ public class RedisCacheMonitor extends Controller {
 			String clientInfo = RedisCacheImpl.getCacheConnection().info();
 			
 			// Poor man's JSON conversion... 
-			clientInfo = clientInfo.replaceAll("([\\s]+)", ","); // Replace CRLF with comma
+			// Surround keys/values with quotes
+			clientInfo = clientInfo.replaceAll("([^\\s:]+)", "\"$1\"");
+			
+			 // Replace CRLF with comma
+			clientInfo = clientInfo.replaceAll("([\\s]+)", ",");
 			
 			// Drop last comma
 			if (clientInfo.endsWith(",")) {
 				clientInfo = clientInfo.substring(0, clientInfo.length() - 1);
 			}
 			
-			// Surround keys/values with quotes
-			clientInfo = "{" + clientInfo.replaceAll("([a-zA-Z0-9_\\-\\.]+)", "\"$1\"") + "}"; 
-			
-			renderJSON(clientInfo);
+			renderJSON("{" + clientInfo + "}");
 		}
 	}
 	
