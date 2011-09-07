@@ -40,6 +40,8 @@
 
     <target name="clean" depends="check">
         <delete dir="tmp" />
+        <delete dir="samples-and-tests/redis-cache/modules" />
+        <delete dir="samples-and-tests/twayis/modules" />
         <delete file="lib/play-redis.jar" />
     </target>
 

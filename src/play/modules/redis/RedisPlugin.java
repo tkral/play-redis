@@ -104,7 +104,7 @@ public class RedisPlugin extends PlayPlugin {
     		
     	    host = redisUri.getHost();
     	    
-        	if (redisUri.getPort() < 0) {
+        	if (redisUri.getPort() > 0) {
         		port = redisUri.getPort();
         	} else {
         	    port = Protocol.DEFAULT_PORT;
