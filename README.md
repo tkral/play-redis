@@ -1,30 +1,49 @@
 # Redis Plugin for Play Framework
 This plugin allow you to integrate redis with your Play application.  It consists of three parts:
 
-1. A redis connection manager used to persist data to a redis instance.
+1. A redis client used to persist data to a redis instance.
 2. A redis implementation of Play's cache interface.  This allows you to use redis for your caching needs.
 3. A redis cache monitor that helps you debug issues with your redis cache.
 
 With this plugin, you can choose to use redis as a persistent data store or a caching system or both. **Note** that if you choose both, you'll need separate redis instances.  The cache is flushed at application shutdown.
 
-## Using the Redis Connection Manager
-Configuring the redis connection manager is easy.  Simply add this property to your `conf/application.conf` file:
+## Using the Redis Client
+Configuring the redis client is easy.  Simply add this property to your `conf/application.conf` file:
 
 ```
-    redis.url=redis://username:password@host:port
+redis.url=redis://username:password@host:port
 ```
 
-Within your application code, you can get a redis connection with:
+Within your application code, the redis client is available via the `play.modules.redis.Redis` class.  For example, you can set and get values with the following code:
 
 ```java
-Redis.getConnection();
+Redis.set("key", "value");
+Redis.get("key");
 ```
 
-Now you can make direct calls to your redis instance.  For example:
+Note that this class abstracts away the client implementation.  If for some reason, you wish to get the native client, that is possible as well:
 
 ```java
-Redis.getConnection().set("key", "value");
+RedisConnectionManager.getRawConnection().set("key", "value");
 ```
+
+`RedisConnectionManager.getRawConnection` will return a `Jedis` client.
+
+### Using the Redis Client with Shared Instances
+The plugin supports sharded instances.  Within your `conf/application.conf` file, specify the connection urls to the various shards:
+
+```
+redis.1.url=redis://username:password@host:port
+redis.2.url=redis://...
+```
+
+Now you may use the Redis client the same way as above.  If you wish to get a native client, you can with the following:
+
+```java
+RedisConnectionManager.getRawConnectionFromShard("key");
+```
+
+This will return a `Jedis` client to the shard containing the key argument;
 
 ## Using Redis for Caching
 Again, the configuration is easy.  Add these properties to your `conf/application.conf` file:
