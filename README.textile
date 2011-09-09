@@ -55,7 +55,7 @@ Now you can use the Cache interface like you normally would in your Play applica
 *Using the Redis Cache Monitor*
 This monitor helps debug your cache while your Play app is running.  Simply add this to your routes file:
 
-@ * /cache       module:redis@
+<code> * /cache       module:redis</code>
 
 Now you can drop the cacheMonitor tag in any of your views:
 
