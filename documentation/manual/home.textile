@@ -8,11 +8,16 @@ This plugin allow you to integrate redis with your Play application.  It consist
 
 With this plugin, you can choose to use redis as a persistent data store or a caching system or both. Note that if you choose both, you'll need separate redis instances.  The cache is flushed at application shutdown.
 
+*Installation*
+To install the redis module, add this to your conf/dependencies.yml file:
+
+require:
+    - play -> redis
+
 *Using the Redis Client*
 Configuring the redis client is easy.  Simply add this property to your conf/application.conf file:
 
 <code>redis.url=redis://username:password@host:port</code>
-
 
 Within your application code, the redis client is available via the play.modules.redis.Redis class.  For example, you can set and get values with the following code:
 
@@ -58,4 +63,6 @@ Now you can drop the cacheMonitor tag in any of your views:
 
 The cache monitor will report your cache contents as well as information about your cache redis instance.
 
+*Source Code*
+The source code is available on Github at https://github.com/tkral/play-redis
 
