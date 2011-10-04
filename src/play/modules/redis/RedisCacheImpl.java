@@ -1,17 +1,14 @@
 package play.modules.redis;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.util.HashMap;
-import java.util.Map;
-
+import play.Play;
 import play.cache.CacheImpl;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.exceptions.JedisDataException;
+
+import java.io.*;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Play cache implementation using Redis.
@@ -134,7 +131,13 @@ public class RedisCacheImpl implements CacheImpl {
 		
 		ObjectInputStream in = null;
 		try {
-			in = new ObjectInputStream(new ByteArrayInputStream(bytes));
+			in = new ObjectInputStream(new ByteArrayInputStream(bytes)) {
+               @Override
+                protected Class<?> resolveClass(ObjectStreamClass desc)
+                        throws IOException, ClassNotFoundException {
+                    return Class.forName(desc.getName(), false, Play.classloader);
+                }
+            };
 			return in.readObject();
 		} catch (Exception e) {
 			throw new RuntimeException(e);
