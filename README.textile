@@ -66,3 +66,8 @@ The cache monitor will report your cache contents as well as information about y
 *Source Code*
 The source code is available on Github at https://github.com/tkral/play-redis
 
+*Change Log*
+
+v0.3:
+* Add caching support for model objects
+
