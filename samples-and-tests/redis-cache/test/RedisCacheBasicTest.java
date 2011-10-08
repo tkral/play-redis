@@ -48,7 +48,7 @@ public class RedisCacheBasicTest extends UnitTest {
     }
 
     @Test
-    public void testCacheModelObject() {
+    public void testBasicCacheModelObject() {
         Cache.add("testModelObject", new TestModelObject(1L, "TestProperty"));
         TestModelObject obj = Cache.get("testModelObject", TestModelObject.class);
         assertNotNull(obj);
