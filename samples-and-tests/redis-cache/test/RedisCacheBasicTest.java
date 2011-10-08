@@ -1,8 +1,8 @@
+import models.TestModelObject;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
 import play.cache.Cache;
 import play.modules.redis.RedisCacheImpl;
 import play.test.UnitTest;
@@ -45,6 +45,15 @@ public class RedisCacheBasicTest extends UnitTest {
     	Cache.add("testBasicCacheDouble", 2.028486d);
     	double cacheValue = Cache.get("testBasicCacheDouble", Double.class);
     	Assert.assertEquals("Unexpected value retrieved from cache.", 2.028486d, cacheValue, 0d);
+    }
+
+    @Test
+    public void testCacheModelObject() {
+        Cache.add("testModelObject", new TestModelObject(1L, "TestProperty"));
+        TestModelObject obj = Cache.get("testModelObject", TestModelObject.class);
+        assertNotNull(obj);
+        assertEquals((Long)1L, obj.id);
+        assertEquals("TestProperty", obj.testProperty);
     }
     
     @Test

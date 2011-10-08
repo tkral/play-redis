@@ -11,3 +11,7 @@ tmp/
 .classpath
 .project
 .settings/
+.idea/
+out/
+logs/
+*.iml
