@@ -4,8 +4,8 @@ require:
     - play
     - play -> secure
     - play -> guice 1.2
-#   - play -> redis 0.2
-    - localModule -> play-redis 0.2
+#   - play -> redis 0.3
+    - localModule -> play-redis 0.3
     - com.ocpsoft -> ocpsoft-pretty-time 1.0.4:
         transitive: false
 
