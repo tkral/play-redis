@@ -12,7 +12,7 @@ import play.mvc.Controller;
 
 public class RedisCacheMonitor extends Controller {
 
-	public static void cacheInstance() {
+	public static void cacheInstance() throws RedisCacheImpl.JedisCheckedException {
 		if (RedisPlugin.isRedisCacheEnabled()) {
 			Map<String, Object> cacheInstanceInfo = new HashMap<String, Object>(2);
 			cacheInstanceInfo.put("host", RedisCacheImpl.getCacheConnection().getClient().getHost());
@@ -21,7 +21,7 @@ public class RedisCacheMonitor extends Controller {
 		}
 	}
 	
-	public static void cacheClientInfo() {
+	public static void cacheClientInfo() throws RedisCacheImpl.JedisCheckedException {
 		if (RedisPlugin.isRedisCacheEnabled()) {
 			String clientInfo = RedisCacheImpl.getCacheConnection().info();
 			
@@ -41,7 +41,7 @@ public class RedisCacheMonitor extends Controller {
 		}
 	}
 	
-	public static void cacheContents() {
+	public static void cacheContents() throws RedisCacheImpl.JedisCheckedException {
 		if (RedisPlugin.isRedisCacheEnabled()) {
 			Set<String> keys = RedisCacheImpl.getCacheConnection().keys("*");
 			

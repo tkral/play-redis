@@ -84,8 +84,12 @@ public class RedisPlugin extends PlayPlugin {
 	
     @Override
     public void invocationFinally() {
-    	if (createdRedisCache) RedisCacheImpl.closeCacheConnection();
-    	if (createdRedis) RedisConnectionManager.closeConnection();
+        try {
+            if (createdRedisCache) RedisCacheImpl.closeCacheConnection();
+        } catch (RedisCacheImpl.JedisCheckedException e) {
+            Logger.error(e, e.getMessage());
+        }
+        if (createdRedis) RedisConnectionManager.closeConnection();
     }
     
     private static class RedisConnectionInfo {
